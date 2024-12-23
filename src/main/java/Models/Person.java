@@ -7,13 +7,12 @@ import java.util.Map;
 
 public class Person {
 
+    private  String id;
     private String name;
     private String gender;
-    private  String id;
-    private String exersise;
-    private String homeWork;
-    private String quastions;
-    private Map<String,String> Themes;
+    private int exersise;
+    private int homeWork;
+    private int quastions;
 
 
 
@@ -37,13 +36,13 @@ public class Person {
     public void setID( String id){
         this.id = id;
     }
-    public void setExersise( String exersise){
+    public void setExersise( int exersise){
         this.exersise = exersise;
     }
-    public void setHomeWork( String homeWork){
+    public void setHomeWork( int homeWork){
         this.homeWork = homeWork;
     }
-    public void setQuastions( String quastions){
+    public void setQuastions( int quastions){
         this.quastions = quastions;
     }
 
@@ -58,15 +57,15 @@ public class Person {
     }
 
 
-    public String getExersise(){
+    public int getExersise(){
         return exersise;
     }
 
-    public String getHomeWork(){
+    public int getHomeWork(){
         return homeWork;
     }
 
-    public String getQuastions(){
+    public int getQuastions(){
         return quastions;
     }
 
@@ -79,15 +78,6 @@ public class Person {
         this.gender = gender;
     }
 
-    public void setThemes(String key, String value){
-        Themes.put(key,value);
-    }
-
-
-
-    public String getThemes(){
-        return Themes.toString();
-    }
 
     public String inString(){
          return String.format("%s %s %s", name,id);

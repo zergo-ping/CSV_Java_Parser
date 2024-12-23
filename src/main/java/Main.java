@@ -1,11 +1,20 @@
-import com.opencsv.exceptions.CsvException;
+import Models.Students;
+import SQL.DbOrm;
 
-import java.io.IOException;
+import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) throws IOException, CsvException {
-        //ParserCSV.CSVParser();
-        API.M("Никита");
+    public static void main(String[] args) throws Exception {
+        Students students = new Students();
+        ParserCSV.CSVParser(students);
+        var db = new DbOrm();
+        db.connect();
+        db.createMalesTable();
+        db.saveMales(students.getMales_list());
+        db.createFemalesTable();
+        db.saveFemales(students.getFemales_list());
+        db.close();
+
 
 
 

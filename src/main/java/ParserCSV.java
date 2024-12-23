@@ -15,13 +15,12 @@ import com.opencsv.exceptions.CsvException;
 
 public class ParserCSV {
 
-    public static void CSVParser() throws IOException, CsvException {
+    public static void CSVParser(Students students) throws IOException, CsvException {
 
         CSVParser parser = new CSVParserBuilder().withSeparator(';').build();
 
         ArrayList<Person> personArrayList = new ArrayList<>();
 
-        Students students = new Students();
 
 
         CSVReader reader = new CSVReaderBuilder(new FileReader("C:\\Users\\Никита\\Desktop\\10\\java-rtf — копия(in).csv", Charset.forName("CP1251"))).withCSVParser(parser).withSkipLines(3).build();
@@ -32,21 +31,24 @@ public class ParserCSV {
 
 
             Person person = new Person();
-            person.setName(line[0]);
+            person.setName(line[0].replace("[",""));
             person.setID(line[1]);
-            if (line[2].charAt(0) == 'А') {
-                person.setExersise(line[3]);
-                person.setHomeWork(line[4]);
-                person.setQuastions(line[5]);
+            if (line[3].charAt(0) == 'А' && Character.isDigit(line[4].charAt(0))) {
+                person.setExersise(Integer.parseInt(line[4]));
+                person.setHomeWork(Integer.parseInt(line[5]));
+                person.setQuastions(Integer.parseInt(line[6]));
             } else {
-                person.setExersise(line[5]);
-                person.setHomeWork(line[6]);
-                person.setQuastions(line[7]);
+                person.setExersise(Integer.parseInt(line[5]));
+                person.setHomeWork(Integer.parseInt(line[6]));
+                person.setQuastions(Integer.parseInt(line[7]));
             }
+            person.setGender(API.APIRequest(person.getName()));
+            students.add_to_List(person);
 
 
 
-            System.out.print(person.getName() + " " + person.getExersise() + " " + person.getHomeWork() + " " + person.getQuastions() + "\n");
+
+            //System.out.print(person.getName() + " " + person.getExersise() + " " + person.getHomeWork() + " " + person.getQuastions() + "\n");
 
 
 
